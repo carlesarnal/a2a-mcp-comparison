@@ -1,4 +1,4 @@
-name: Evidence schema checks
+name: Paired protocol integration
 on: [push, pull_request]
 permissions:
   contents: read
@@ -10,4 +10,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
-      - run: python3 compare.py
+      - run: pip install -r requirements.txt
+      - run: python3 integration.py
+      - run: python3 compare.py --require-observed

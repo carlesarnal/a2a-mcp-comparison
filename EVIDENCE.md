@@ -1,19 +1,7 @@
-# Evidence and claim boundaries
+# Evidence
 
-Evidence-table validator passes. Paired A2A/MCP transport implementation is not complete. The --require-observed delivery gate deliberately fails; no interface-parity result is claimed.
+Official SDK loopback integration passed. Both interfaces returned the same eight-word fixture. Blank input produced a failed A2A task and an MCP error result. A2A exposed working/canceled task states; MCP exposed progress notifications and client-request cancellation with a usable subsequent session.
 
-## Compare a requirement, not a label
+A2A SDK 0.3.22 / protocol 0.3.0; MCP SDK 1.26.0 / protocol 2025-11-25. Python implementation, not the previously proposed Quarkus comparison. MCP server-side compute cessation is not proven by client cancellation; neither implementation persists tasks across restart. No auth or production inference benchmark.
 
-The same summarization work can be exposed as an MCP tool or an A2A agent. Choosing an interface from the words tool and agent alone hides the questions the caller must answer: how to discover inputs, represent progress, cancel work and interpret a failed invocation. Apicurio can store discovery metadata, but that does not make these interfaces interchangeable.
-
-## Control the experiment
-
-Begin with one deterministic summarization fixture and the same input on both paths. Pin the protocol and SDK versions and record the actual messages. Introduce a model only after transport behavior is understood, otherwise different generated summaries can obscure an interface-level comparison. The existing connected briefing uses different capabilities and is not evidence of parity.
-
-## Use four evidence states
-
-For each requirement, record specification support, advertised implementation support, observed behavior and unsupported behavior. Untested is not synonymous with unsupported. The repository includes a small validator and a delivery gate that refuses an evidence table with untested rows. It currently fails that delivery gate because the paired implementation is still preparation work.
-
-## A design method, not a finished benchmark
-
-This article presents the comparison method and its evidence requirements. It does not claim an implemented cross-protocol benchmark or a universal recommendation. Exposing both interfaces adds contract tests and lifecycle obligations. Choose that extra surface only when distinct callers need it, rather than because both protocols are fashionable.
+See `observations.json` and the runner assertions. Results are observed fixture behavior, not acceptance predictions.

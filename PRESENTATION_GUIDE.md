@@ -2,63 +2,41 @@
 
 A2A or MCP? Choosing an Interface for the Same Capability
 
-## Audience and central claim
+## 0:00 — One capability, two actual transports
 
-The same summarization work can be exposed as an MCP tool or an A2A agent. Choosing an interface from the words tool and agent alone hides the questions the caller must answer: how to discover inputs, represent progress, cancel work and interpret a failed invocation. Apicurio can store discovery metadata, but that does not make these interfaces interchangeable.
+Use the corresponding assertion or result record, explain what changes, and ask which boundary the observation proves.
 
-## 30-minute run of show
+## 4:00 — Identical output is only the starting point
 
-### 0:00 — Hold the capability constant
+Use the corresponding assertion or result record, explain what changes, and ask which boundary the observation proves.
 
-Say: The same summarization work can be exposed as an MCP tool or an A2A agent. Choosing an interface from the words tool and agent alone hides the questions the caller must answer: how to discover inputs, represent progress, cancel work and interpret a failed invocation. Apicurio can store discovery metadata, but that does not make these interfaces interchangeable.
+## 9:00 — Failed task versus tool error result
 
-Show the corresponding diagram, source record or actual command output. Pause to identify the observation that supports the claim.
+Use the corresponding assertion or result record, explain what changes, and ask which boundary the observation proves.
 
-### 4:00 — Trace the caller contract
+## 15:00 — Progress and cancellation expose different caller contracts
 
-Say: Begin with one deterministic summarization fixture and the same input on both paths. Pin the protocol and SDK versions and record the actual messages. Introduce a model only after transport behavior is understood, otherwise different generated summaries can obscure an interface-level comparison. The existing connected briefing uses different capabilities and is not evidence of parity.
+Use the corresponding assertion or result record, explain what changes, and ask which boundary the observation proves.
 
-Show the corresponding diagram, source record or actual command output. Pause to identify the observation that supports the claim.
+## 21:00 — A canceled request is not proof of durable recovery
 
-### 9:00 — Compare one successful invocation
+Use the corresponding assertion or result record, explain what changes, and ask which boundary the observation proves.
 
-Say: For each requirement, record specification support, advertised implementation support, observed behavior and unsupported behavior. Untested is not synonymous with unsupported. The repository includes a small validator and a delivery gate that refuses an evidence table with untested rows. It currently fails that delivery gate because the paired implementation is still preparation work.
+## 26:00 — Questions and buffer
 
-Show the corresponding diagram, source record or actual command output. Pause to identify the observation that supports the claim.
+A2A SDK 0.3.22 / protocol 0.3.0; MCP SDK 1.26.0 / protocol 2025-11-25. Python implementation, not the previously proposed Quarkus comparison. MCP server-side compute cessation is not proven by client cancellation; neither implementation persists tasks across restart. No auth or production inference benchmark.
 
-### 15:00 — Record a failure and uncertainty
-
-Say: This article presents the comparison method and its evidence requirements. It does not claim an implemented cross-protocol benchmark or a universal recommendation. Exposing both interfaces adds contract tests and lifecycle obligations. Choose that extra surface only when distinct callers need it, rather than because both protocols are fashionable.
-
-Show the corresponding diagram, source record or actual command output. Pause to identify the observation that supports the claim.
-
-### 21:00 — Separate unsupported from untested
-
-Say: Use the evidence boundary to choose the next action.
-
-Show the corresponding diagram, source record or actual command output. Pause to identify the observation that supports the claim.
-
-### 26:00 — Questions and buffer
-
-Ask what the demonstration establishes and what it leaves open. Do not add another feature if time is short.
-
-## Setup and fallback
+## Commands
 
 ```sh
-python3 compare.py
+uv venv .venv
+uv pip install --python .venv/bin/python -r requirements.txt
+.venv/bin/python integration.py
+.venv/bin/python compare.py --require-observed
 ```
 
-Evidence-table validator passes. Paired A2A/MCP transport implementation is not complete. The --require-observed delivery gate deliberately fails; no interface-parity result is claimed.
+## Observed result
 
-Prebuild/download dependencies. Keep a recording of an actual successful run; if unavailable, use the documented walkthrough and say it is not live execution. Never substitute fabricated success output.
+Official SDK loopback integration passed. Both interfaces returned the same eight-word fixture. Blank input produced a failed A2A task and an MCP error result. A2A exposed working/canceled task states; MCP exposed progress notifications and client-request cancellation with a usable subsequent session.
 
-## Questions to prepare
-
-- What is the simplest alternative?
-- Which failure was actually exercised?
-- Which guarantee belongs to the application rather than the infrastructure?
-- Which result changes with versions or workload?
-
-## 25-minute adaptation
-
-Use one central trace, shorten setup and reserve three minutes for questions. Move the secondary implementation example to backup.
+For 25 minutes, shorten setup and keep one trace plus the failure result. A backup recording must show a real run, not synthetic output.

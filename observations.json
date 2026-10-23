@@ -1,0 +1,18 @@
+{
+  "a2a": {
+    "protocol": "0.3.0",
+    "output": "One implementation can expose multiple interfaces without changing",
+    "invalid_input": "failed task",
+    "progress": "working via tasks/get",
+    "cancel": "canceled task, no artifact"
+  },
+  "mcp": {
+    "protocol": "2025-11-25",
+    "output": "One implementation can expose multiple interfaces without changing",
+    "invalid_input": "isError tool result",
+    "progress": [
+      0.0
+    ],
+    "cancel": "client request canceled; next request succeeds; no durable task store"
+  }
+}

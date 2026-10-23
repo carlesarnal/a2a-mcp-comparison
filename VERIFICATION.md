@@ -1,17 +1,12 @@
-# Verification ledger
+# Verification — October 23, 2026
 
-Prepared October 23, 2026.
-
-Evidence-table validator passes. Paired A2A/MCP transport implementation is not complete. The --require-observed delivery gate deliberately fails; no interface-parity result is claimed.
-
-## Reproduce
+Official SDK loopback integration passed. Both interfaces returned the same eight-word fixture. Blank input produced a failed A2A task and an MCP error result. A2A exposed working/canceled task states; MCP exposed progress notifications and client-request cancellation with a usable subsequent session.
 
 ```sh
-python3 compare.py
+uv venv .venv
+uv pip install --python .venv/bin/python -r requirements.txt
+.venv/bin/python integration.py
+.venv/bin/python compare.py --require-observed
 ```
 
-A documentation or model check is not an integration test. New results must record source revision, runtime versions, command, observed outcome and remaining limits. No acceptance score is guaranteed.
-
-## Package checks
-
-Offline deck navigation/layout and documentation links are checked separately from application behavior. No claim of a five-star speaking performance is made by these artifacts.
+A2A SDK 0.3.22 / protocol 0.3.0; MCP SDK 1.26.0 / protocol 2025-11-25. Python implementation, not the previously proposed Quarkus comparison. MCP server-side compute cessation is not proven by client cancellation; neither implementation persists tasks across restart. No auth or production inference benchmark.

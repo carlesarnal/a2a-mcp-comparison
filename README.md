@@ -1,24 +1,24 @@
-# A2A or MCP? Compare the Caller Contract
+# A2A or MCP? Choosing an Interface for the Same Capability
 
-A research and presentation repository for exposing **the same summarization
-capability** through two interfaces. This is distinct from the connected
-[agent-discovery demo](https://github.com/carlesarnal/agent-discovery-demo/tree/cloud-native-paris-2026),
-which invokes different capabilities and cannot establish interface equivalence.
+Official SDK loopback integration passed. Both interfaces returned the same eight-word fixture. Blank input produced a failed A2A task and an MCP error result. A2A exposed working/canceled task states; MCP exposed progress notifications and client-request cancellation with a usable subsequent session.
 
-## Evidence first
+## Run
 
-Run `python3 compare.py` to validate the decision-table records. The initial table
-honestly marks paired-runtime observations as untested. `python3 compare.py --require-observed`
-is the delivery gate and fails until every claimed comparison has supporting observations.
-Do not turn that failure into a green check by changing labels without running the tests.
+```sh
+uv venv .venv
+uv pip install --python .venv/bin/python -r requirements.txt
+.venv/bin/python integration.py
+.venv/bin/python compare.py --require-observed
+```
 
-The lab plan holds input and implementation constant, records SDK/protocol versions,
-then compares discovery, output, failed invocation, task progress and cancellation.
-The model itself must not be the uncontrolled variable: begin with a deterministic
-summary fixture and add a real model only after transport behavior is understood.
+## Evidence and boundaries
 
-The repository currently supplies the evidence schema, comparison method and
-presentation plan. It is **not yet a completed side-by-side protocol implementation**.
-See `VERIFICATION.md` and `PRESENTATION_GUIDE.md`.
+A2A SDK 0.3.22 / protocol 0.3.0; MCP SDK 1.26.0 / protocol 2025-11-25. Python implementation, not the previously proposed Quarkus comparison. MCP server-side compute cessation is not proven by client cancellation; neither implementation persists tasks across restart. No auth or production inference benchmark.
 
-License: Apache-2.0; see LICENSE.
+Observed machine-readable results: [observations.json](observations.json).
+
+All containers/processes created by the runner are cleaned up on normal completion and handled failures. An externally killed process may need the explicit Compose cleanup command. Use only disposable local test resources.
+
+## Present
+
+Open `presentation.html`; arrows/Page keys navigate and N toggles notes. Use `PRESENTATION_GUIDE.md` for timing and the actual commands.
