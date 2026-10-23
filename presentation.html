@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2A or MCP? Choosing an Interface for the Same Capability</title>
+<style>body{margin:0;background:#f5f3ef;color:#242424;font:clamp(18px,2.1vw,28px) system-ui}section{display:none;box-sizing:border-box;min-height:100vh;padding:6vw}section.active{display:block}h1{font-size:clamp(28px,4vw,54px);max-width:1000px}p,li{max-width:1100px;line-height:1.5}small{color:#80502e}nav{position:fixed;bottom:12px;right:20px}button{font-size:18px;padding:8px}.notes{display:none;background:#e2efea;padding:20px}body.notes-on .notes{display:block}@media print{section{display:block;break-after:page;min-height:90vh}nav,.notes{display:none!important}}</style>
+<body>
+<section id="slide-1" class="active">
+<small>1 / 7</small>
+<h1>The question</h1>
+<p>A2A or MCP? Choosing an Interface for the Same Capability</p>
+<aside class="notes">Explain the evidence, then its boundary. Use the corresponding section in PRESENTATION_GUIDE.md.</aside>
+</section>
+<section id="slide-2" class="">
+<small>2 / 7</small>
+<h1>Compare a requirement, not a label</h1>
+<p>The same summarization work can be exposed as an MCP tool or an A2A agent. Choosing an interface from the words tool and agent alone hides the questions the caller must answer: how to discover inputs, represent progress, cancel work and interpret a failed invocation. Apicurio can store discovery metadata, but that does not make these interfaces interchangeable.</p>
+<aside class="notes">Explain the evidence, then its boundary. Use the corresponding section in PRESENTATION_GUIDE.md.</aside>
+</section>
+<section id="slide-3" class="">
+<small>3 / 7</small>
+<h1>Control the experiment</h1>
+<p>Begin with one deterministic summarization fixture and the same input on both paths. Pin the protocol and SDK versions and record the actual messages. Introduce a model only after transport behavior is understood, otherwise different generated summaries can obscure an interface-level comparison. The existing connected briefing uses different capabilities and is not evidence of parity.</p>
+<aside class="notes">Explain the evidence, then its boundary. Use the corresponding section in PRESENTATION_GUIDE.md.</aside>
+</section>
+<section id="slide-4" class="">
+<small>4 / 7</small>
+<h1>Use four evidence states</h1>
+<p>For each requirement, record specification support, advertised implementation support, observed behavior and unsupported behavior. Untested is not synonymous with unsupported. The repository includes a small validator and a delivery gate that refuses an evidence table with untested rows. It currently fails that delivery gate because the paired implementation is still preparation work.</p>
+<aside class="notes">Explain the evidence, then its boundary. Use the corresponding section in PRESENTATION_GUIDE.md.</aside>
+</section>
+<section id="slide-5" class="">
+<small>5 / 7</small>
+<h1>A design method, not a finished benchmark</h1>
+<p>This article presents the comparison method and its evidence requirements. It does not claim an implemented cross-protocol benchmark or a universal recommendation. Exposing both interfaces adds contract tests and lifecycle obligations. Choose that extra surface only when distinct callers need it, rather than because both protocols are fashionable.</p>
+<aside class="notes">Explain the evidence, then its boundary. Use the corresponding section in PRESENTATION_GUIDE.md.</aside>
+</section>
+<section id="slide-6" class="">
+<small>6 / 7</small>
+<h1>Verification boundary</h1>
+<p>Evidence-table validator passes. Paired A2A/MCP transport implementation is not complete. The --require-observed delivery gate deliberately fails; no interface-parity result is claimed.</p>
+<aside class="notes">Explain the evidence, then its boundary. Use the corresponding section in PRESENTATION_GUIDE.md.</aside>
+</section>
+<section id="slide-7" class="">
+<small>7 / 7</small>
+<h1>Takeaways</h1>
+<p>- A decision table for exposing the same capability through A2A, MCP, or both<br>- Questions to ask about task lifecycle, authorization and failure handling<br>- A method for comparing interfaces without conflating protocol choice with implementation behavior</p>
+<aside class="notes">Explain the evidence, then its boundary. Use the corresponding section in PRESENTATION_GUIDE.md.</aside>
+</section>
+<nav>
+<button id="prev" aria-label="Previous slide">←</button> <button id="next" aria-label="Next slide">→</button>
+</nav>
+<script>let n=0;const s=[...document.querySelectorAll('section')];function show(i){n=Math.max(0,Math.min(s.length-1,i));s.forEach((x,j)=>x.classList.toggle('active',j===n));history.replaceState(null,'','#slide-'+(n+1));}function fromHash(){const m=location.hash.match(/^#slide-(\d+)$/);if(m)show(Number(m[1])-1);}document.addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(n+1)}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(n-1)}if(e.key==='Home')show(0);if(e.key==='End')show(s.length-1);if(e.key.toLowerCase()==='n')document.body.classList.toggle('notes-on');if(e.key.toLowerCase()==='f')document.documentElement.requestFullscreen?.();});document.querySelector('#prev').onclick=()=>show(n-1);document.querySelector('#next').onclick=()=>show(n+1);window.addEventListener('hashchange',fromHash);fromHash();</script>
+</body>
+</html>

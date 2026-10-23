@@ -1,0 +1,10 @@
+{
+  "capability": "summarize the same fixed input",
+  "observations": [
+    {"requirement": "discovery", "a2a": "untested", "mcp": "untested", "evidence": []},
+    {"requirement": "successful invocation", "a2a": "untested", "mcp": "untested", "evidence": []},
+    {"requirement": "invalid input", "a2a": "untested", "mcp": "untested", "evidence": []},
+    {"requirement": "task progress", "a2a": "untested", "mcp": "untested", "evidence": []},
+    {"requirement": "cancellation", "a2a": "untested", "mcp": "untested", "evidence": []}
+  ]
+}
